@@ -1,0 +1,24 @@
+{
+  "name": "methodref",
+  "version": "1.0.0",
+  "description": "It's like java's method ref",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Summerlve/methodRef.git"
+  },
+  "keywords": [
+    "java",
+    "method",
+    "ref"
+  ],
+  "author": "summer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Summerlve/methodRef/issues"
+  },
+  "homepage": "https://github.com/Summerlve/methodRef#readme"
+}
