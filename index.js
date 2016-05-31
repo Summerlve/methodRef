@@ -2,9 +2,8 @@
 
 let methodRef = Object.create(null);
 
-methodRef.staticMethod = function (fn) {
-    return arg => fn(arg);
-};
+methodRef.staticMethod = fn =>
+                            arg => fn(arg);
 
 methodRef.instanceMethod = function (Obj, fn) {
     return function () {
@@ -23,7 +22,8 @@ methodRef.firDotFnRemain = function (fn) {
     };
 };
 
-methodRef.constructorMethod = fn => _ => new fn(_);
+methodRef.constructorMethod = fn =>
+                                 _ => new fn(_);
 
 Object.freeze(methodRef);
 
