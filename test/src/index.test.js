@@ -1,10 +1,7 @@
 "use strict";
-const assert = require("assert");
-const methodRef = require("../index.js");
-const staticMethod = methodRef.staticMethod;
-const instanceMethod = methodRef.instanceMethod;
-const firDotFnRemain = methodRef.firDotFnRemain;
-const constructorMethod = methodRef.constructorMethod;
+
+import * as assert from "assert";
+import {staticMethod, instanceMethod, firDotFnRemain, constructorMethod} from "../../build/index.js"
 
 describe("test methodRef", () => {
     it("test methodRef.staticMethod", () => {
