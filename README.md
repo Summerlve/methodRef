@@ -5,10 +5,15 @@ It's like java's method ref
 npm install methodref
 
 # USE CASE
-const methodRef = require("methodref");
-const staticMethod = methodRef.staticMethod;
-const instanceMethod = methodRef.instanceMethod;
-const firDotFnRemain = methodRef.firDotFnRemain;
-const constructorMethod = methodRef.constructorMethod;
+* ES5
+```javascript
+const {staticMethod, instanceMethod, firDotFnRemain, constructorMethod} = require("methodref");
+```
 
-for more detail see test file in test folder which file named index.test.js.
+* ES6
+```javascript
+import methodRef from "methodref";
+```
+
+
+for more detail see test file.
