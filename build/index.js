@@ -1,36 +1,61 @@
 "use strict";
 
-var methodRef = Object.create(null);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-methodRef.staticMethod = function (fn) {
-    return function (arg) {
-        return fn(arg);
-    };
-};
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-methodRef.instanceMethod = function (Obj, fn) {
-    return function () {
-        return fn.apply(Obj, Array.prototype.slice.apply(arguments));
-    };
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-methodRef.firDotFnRemain = function (fn) {
-    return function () {
-        var args = Array.prototype.slice.apply(arguments);
+var MethodRef = function () {
+    function MethodRef() {
+        _classCallCheck(this, MethodRef);
+    }
 
-        var fir = args[0];
-        var remain = args.slice(1);
+    _createClass(MethodRef, null, [{
+        key: "staticMethod",
+        value: function staticMethod(fn) {
+            return function () {
+                return fn.apply(undefined, arguments);
+            };
+        }
+    }, {
+        key: "instanceMethod",
+        value: function instanceMethod(Obj, fn) {
+            return function () {
+                for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                    args[_key] = arguments[_key];
+                }
 
-        return fn.apply(fir, remain);
-    };
-};
+                return fn.call.apply(fn, [Obj].concat(args));
+            };
+        }
+    }, {
+        key: "firDotFnRemain",
+        value: function firDotFnRemain(fn) {
+            return function (fir) {
+                for (var _len2 = arguments.length, remain = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+                    remain[_key2 - 1] = arguments[_key2];
+                }
 
-methodRef.constructorMethod = function (fn) {
-    return function (_) {
-        return new fn(_);
-    };
-};
+                return fn.call.apply(fn, [fir].concat(remain));
+            };
+        }
+    }, {
+        key: "constructorMethod",
+        value: function constructorMethod(fn) {
+            return function () {
+                for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+                    args[_key3] = arguments[_key3];
+                }
 
-Object.freeze(methodRef);
+                return new (Function.prototype.bind.apply(fn, [null].concat(args)))();
+            };
+        }
+    }]);
 
-module.exports = methodRef;
+    return MethodRef;
+}();
+
+exports.default = MethodRef;

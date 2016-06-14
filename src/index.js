@@ -1,30 +1,25 @@
 "use strict";
 
-let methodRef = Object.create(null);
+class MethodRef {
+    static staticMethod(fn) {
+        return (...args) =>
+                        fn(...args);
+    }
 
-methodRef.staticMethod = fn =>
-                            arg => fn(arg);
+    static instanceMethod(Obj, fn) {
+        return (...args) =>
+                fn.call(Obj, ...args);
+    }
 
-methodRef.instanceMethod = function (Obj, fn) {
-    return function () {
-        return fn.apply(Obj, Array.prototype.slice.apply(arguments));
-    };
-};
+    static firDotFnRemain(fn) {
+        return (fir, ...remain) =>
+                            fn.call(fir, ...remain);
+    }
 
-methodRef.firDotFnRemain = function (fn) {
-    return function () {
-        let args = Array.prototype.slice.apply(arguments);
+    static constructorMethod(fn) {
+        return (...args) =>
+                        new fn(...args);
+    }
+}
 
-        let fir = args[0];
-        let remain = args.slice(1);
-
-        return fn.apply(fir, remain);
-    };
-};
-
-methodRef.constructorMethod = fn =>
-                                 _ => new fn(_);
-
-Object.freeze(methodRef);
-
-module.exports = methodRef;
+export default MethodRef;

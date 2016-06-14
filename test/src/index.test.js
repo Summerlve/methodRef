@@ -1,7 +1,9 @@
 "use strict";
 
 import * as assert from "assert";
-import {staticMethod, instanceMethod, firDotFnRemain, constructorMethod} from "../../build/index.js"
+import MethodRef from "../../build/index.js";
+
+const {staticMethod, instanceMethod, firDotFnRemain, constructorMethod} = MethodRef;
 
 describe("test methodRef", () => {
     it("test methodRef.staticMethod", () => {
