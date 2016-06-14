@@ -1,6 +1,6 @@
 {
   "name": "methodref",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "It's like java's method ref",
   "main": "./build/index.js",
   "scripts": {
